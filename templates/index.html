@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Jogos</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Lista de Jogos</h1>
+    </header>
+
+    <form method="POST">
+        <label for="nome">Nome do Jogo:</label>
+        <input type="text" id="nome" name="nome" required>
+        <br>
+        <br>
+        <label for="genero">Gênero do Jogo:</label>
+        <input type="text" id="genero" name="genero" required>
+        <br>
+        <br>
+        <button type="submit">Adicionar Jogo</button>
+    </form>
+
+    <table class="tabela">
+        <tr>
+            <th>Jogo</th>
+            <th>Gênero</th>
+            <th>Ação</th>
+        </tr>
+
+        {% for jogo in jogos %}
+        <tr>
+            <td>{{ jogo.nome }}</td>
+            <td>{{ jogo.genero }}</td>
+            <td>
+                <a href="{{ url_for('editar', index=loop.index0) }}">Editar</a>
+                <a href="{{ url_for('deletar', index=loop.index0) }}" >Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
